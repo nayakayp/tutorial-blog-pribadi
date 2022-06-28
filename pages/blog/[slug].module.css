@@ -1,0 +1,13 @@
+.root h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    margin-top: 24px;
+}
+.root p {
+    margin-bottom: 16px;
+}
+@media screen and (min-width: 600px) {
+    .root h2 {
+        font-size: 32px;
+    }
+}
