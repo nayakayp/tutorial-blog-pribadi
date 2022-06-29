@@ -6,8 +6,7 @@ export default {
         {
             name: "cover",
             title: "Image Cover",
-            type: "array",
-            of: [{ type: "image" }],
+            type: "image",
         },
         {
             name: "judul",
@@ -55,6 +54,11 @@ export default {
                     ],
                 },
             ],
+        },
+        {
+            name: "excerpt",
+            title: "Excerpt",
+            type: "text",
         },
     ],
 };
