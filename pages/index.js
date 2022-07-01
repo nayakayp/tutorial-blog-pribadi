@@ -38,7 +38,7 @@ export default function Home({ posts }) {
 }
 
 export async function getServerSideProps() {
-    const query = '*[ _type == "post" && !(_id in path("drafts.**"))]';
+    const query = '*[ _type == "post" && !(_id in path("drafts.**"))][0..3]';
     const posts = await client.fetch(query);
 
     return {

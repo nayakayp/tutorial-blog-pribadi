@@ -1,8 +1,28 @@
-import SubscribeForm from "../components/SubscribeForm";
+import { useEffect, useState } from "react";
 import { AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
+import { useForm, ValidationError } from "@formspree/react";
+import Link from "next/link";
 
 export default function Contact() {
+    const [state, handleSubmit] = useForm("mpzbevqa");
+
+    if (state.succeeded) {
+        return (
+            <div className="mt-4 flex w-full flex-col items-center justify-center">
+                <p className="rounded bg-green-500 px-10 py-4 text-2xl text-white">
+                    Pesan terkirim!
+                </p>
+                <button
+                    onClick={() => window.location.reload()}
+                    className="mt-2 text-lg font-bold underline"
+                >
+                    Refresh
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div className="">
             <h1 className="mt-[74px] text-center text-2xl font-bold md:text-[40px] md:leading-none">
@@ -37,31 +57,39 @@ export default function Contact() {
                     <h3 className="mb-[18px] text-xl md:mb-6 md:text-[32px]">
                         Contact Me
                     </h3>
-                    <form action="" className="flex flex-col space-y-5">
+                    <form
+                        action="POST"
+                        onSubmit={handleSubmit}
+                        className="flex flex-col space-y-5"
+                    >
                         <textarea
-                            name=""
+                            name="message"
                             id=""
                             cols="30"
                             rows="10"
                             placeholder="Your message"
                             className="w-full rounded-md border border-primary/50 bg-white p-4 text-xs md:text-base"
                         ></textarea>
+
                         <input
                             type="email"
                             placeholder="Your email address"
-                            name=""
-                            id=""
+                            name="email"
+                            id="email"
                             className="w-full rounded-md border border-primary/50 bg-white p-4 text-xs md:text-base"
                         />
+
                         <input
                             type="text"
                             placeholder="Your name here"
-                            name=""
+                            name="name"
                             id=""
                             className="w-full rounded-md border border-primary/50 bg-white p-4 text-xs md:text-base"
                         />
+
                         <button
                             type="submit"
+                            disabled={state.submitting}
                             className="flex w-fit items-center space-x-4 rounded-md bg-accent px-4 py-3 text-white"
                         >
                             <span>Send</span>
